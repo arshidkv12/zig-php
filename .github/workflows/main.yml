@@ -13,12 +13,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
-
-      - name: Install snap
-        run: sudo apt install snap -y
         
       - name: Install latest zig build from master branch
-        run: sudo snap install zig --classic --edge
+        run: sudo apt install zig
         
       - name: Test
         run: zig build test
