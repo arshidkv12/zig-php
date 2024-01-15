@@ -16,6 +16,7 @@ jobs:
 
       - name: install homebrew
       - run: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+      
       - name: Install latest zig build from master branch
       - run: brew install zig
         
