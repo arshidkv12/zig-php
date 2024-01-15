@@ -14,11 +14,11 @@ jobs:
     steps:
       - uses: actions/checkout@v3
 
-      - name: install homebrew
-      - run: /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-      
+      - name: Install snap
+        run: sudo apt install snap -y
+
       - name: Install latest zig build from master branch
-      - run: brew install zig
-        
+        run: sudo snap install zig
+
       - name: Test
         run: zig build test
