@@ -4101,7 +4101,7 @@ pub const union__zend_function = extern union {
     quick_arg_flags: u32,
     common: struct_unnamed_12,
     op_array: zend_op_array,
-    internal_function: zend_internal_function,
+    // internal_function: zend_internal_function,
 };
 pub const zend_function = union__zend_function;
 const struct_unnamed_13 = extern struct {
@@ -7845,18 +7845,21 @@ pub inline fn zend_strnieq(arg_ptr1: [*c]const u8, arg_ptr2: [*c]const u8, arg_n
     var num = arg_num;
     var end: [*c]const u8 = ptr1 + num;
     while (ptr1 < end) {
-        if (@as(c_int, @bitCast(@as(c_uint, zend_tolower_map[@as(u8, @bitCast((blk: {
+        if (@as(c_int, @bitCast(@as(c_uint, zend_tolower_map[
+            @as(u8, @bitCast((blk: {
                 const ref = &ptr1;
                 const tmp = ref.*;
                 ref.* += 1;
                 break :blk tmp;
-            }).*))]))) != @as(c_int, @bitCast(@as(c_uint, zend_tolower_map[@as(u8, @bitCast((blk: {
+            }).*))
+        ]))) != @as(c_int, @bitCast(@as(c_uint, zend_tolower_map[
+            @as(u8, @bitCast((blk: {
                 const ref = &ptr2;
                 const tmp = ref.*;
                 ref.* += 1;
                 break :blk tmp;
-            }).*))]))))
-        {
+            }).*))
+        ])))) {
             return @as(c_int, 0) != 0;
         }
     }
@@ -11343,7 +11346,7 @@ pub inline fn zend_get_special_const(arg_name: [*c]const u8, arg_name_len: usize
     return null;
 }
 pub extern fn zif_skeleton_nop(execute_data: [*c]zend_execute_data, return_value: [*c]zval) void;
-pub extern var skeleton_module_entry: zend_module_entry;
+pub extern var my_: zend_module_entry;
 pub extern var zend_ce_throwable: [*c]zend_class_entry;
 pub extern var zend_ce_exception: [*c]zend_class_entry;
 pub extern var zend_ce_error_exception: [*c]zend_class_entry;
@@ -20295,3 +20298,17 @@ pub const _cwd_state = struct__cwd_state;
 pub const _realpath_cache_bucket = struct__realpath_cache_bucket;
 pub const _virtual_cwd_globals = struct__virtual_cwd_globals;
 pub const _zend_constant = struct__zend_constant;
+
+pub const my_skeleton_module_entry: zend_module_entry = zend_module_entry{ .handle = null, .size = 10, .zend_api = 20220829, .zend_debug = 0, .zts = 0, .ini_entry = null, .deps = null, .name = PHP_SKELETON_EXTNAME, .functions = null, .module_startup_func = null, .module_shutdown_func = null, .request_startup_func = null, .request_shutdown_func = null, .info_func = null, .post_deactivate_func = null, .version = PHP_SKELETON_VERSION, .globals_size = 11, .globals_ptr = null, .globals_ctor = null, .globals_dtor = null, .module_started = 1, .type = 1, .module_number = 11, .build_id = 1 };
+
+// extern "C" {
+//     __declspec(dllexport) zend_module_entry *get_module(void) { return &name##_module_entry; }
+// }
+
+// export fn get_module() *zend_module_entry {
+//     return my_skeleton_module_entry;
+// }
+
+export fn get_module() *const zend_module_entry {
+    return &my_skeleton_module_entry;
+}
