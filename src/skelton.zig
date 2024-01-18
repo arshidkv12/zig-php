@@ -4091,7 +4091,7 @@ pub const struct__zend_internal_function = extern struct {
     attributes: [*c]HashTable,
     T: u32,
     run_time_cache__ptr: [*c]?*anyopaque,
-    handler: zif_handler,
+    // handler: zif_handler,
     module: [*c]struct__zend_module_entry,
     reserved: [6]?*anyopaque,
 };
@@ -4101,7 +4101,7 @@ pub const union__zend_function = extern union {
     quick_arg_flags: u32,
     common: struct_unnamed_12,
     op_array: zend_op_array,
-    // internal_function: zend_internal_function,
+    internal_function: zend_internal_function,
 };
 pub const zend_function = union__zend_function;
 const struct_unnamed_13 = extern struct {
@@ -11345,8 +11345,8 @@ pub inline fn zend_get_special_const(arg_name: [*c]const u8, arg_name_len: usize
     }
     return null;
 }
-pub extern fn zif_skeleton_nop(execute_data: [*c]zend_execute_data, return_value: [*c]zval) void;
-pub extern var my_: zend_module_entry;
+pub extern fn zif_skeleton_nopp(execute_data: [*c]zend_execute_data, return_value: [*c]zval) void;
+pub extern var skeleton_module_entry: zend_module_entry;
 pub extern var zend_ce_throwable: [*c]zend_class_entry;
 pub extern var zend_ce_exception: [*c]zend_class_entry;
 pub extern var zend_ce_error_exception: [*c]zend_class_entry;
@@ -20299,7 +20299,8 @@ pub const _realpath_cache_bucket = struct__realpath_cache_bucket;
 pub const _virtual_cwd_globals = struct__virtual_cwd_globals;
 pub const _zend_constant = struct__zend_constant;
 
-pub const my_skeleton_module_entry: zend_module_entry = zend_module_entry{ .handle = null, .size = 10, .zend_api = 20220829, .zend_debug = 0, .zts = 0, .ini_entry = null, .deps = null, .name = PHP_SKELETON_EXTNAME, .functions = null, .module_startup_func = null, .module_shutdown_func = null, .request_startup_func = null, .request_shutdown_func = null, .info_func = null, .post_deactivate_func = null, .version = PHP_SKELETON_VERSION, .globals_size = 11, .globals_ptr = null, .globals_ctor = null, .globals_dtor = null, .module_started = 1, .type = 1, .module_number = 11, .build_id = 1 };
+// const functions: zend_function_entry = null;
+pub const my_skeleton_module_entry: zend_module_entry = zend_module_entry{ .size = @sizeOf(zend_module_entry), .zend_api = 20220829, .zend_debug = 0, .zts = 0, .ini_entry = null, .deps = null, .name = "skeleton", .functions = null, .module_startup_func = null, .module_shutdown_func = null, .request_startup_func = null, .request_shutdown_func = null, .info_func = null, .version = "0.0.1-dev", .globals_size = 0, .globals_ptr = null, .globals_ctor = null, .globals_dtor = null, .post_deactivate_func = null, .module_started = 0, .type = 0, .handle = null, .build_id = "API20220829,NTS", .module_number = 1 };
 
 // extern "C" {
 //     __declspec(dllexport) zend_module_entry *get_module(void) { return &name##_module_entry; }
