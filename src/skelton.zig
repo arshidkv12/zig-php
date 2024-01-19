@@ -1,3 +1,4 @@
+const std = @import("std");
 pub const __builtin_bswap16 = @import("std").zig.c_builtins.__builtin_bswap16;
 pub const __builtin_bswap32 = @import("std").zig.c_builtins.__builtin_bswap32;
 pub const __builtin_bswap64 = @import("std").zig.c_builtins.__builtin_bswap64;
@@ -11345,7 +11346,7 @@ pub inline fn zend_get_special_const(arg_name: [*c]const u8, arg_name_len: usize
     }
     return null;
 }
-pub extern fn zif_skeleton_nopp(execute_data: [*c]zend_execute_data, return_value: [*c]zval) void;
+// pub extern fn zif_skeleton_nopp(execute_data: [*c]zend_execute_data, return_value: [*c]zval) void;
 pub extern var skeleton_module_entry: zend_module_entry;
 pub extern var zend_ce_throwable: [*c]zend_class_entry;
 pub extern var zend_ce_exception: [*c]zend_class_entry;
@@ -20299,8 +20300,55 @@ pub const _realpath_cache_bucket = struct__realpath_cache_bucket;
 pub const _virtual_cwd_globals = struct__virtual_cwd_globals;
 pub const _zend_constant = struct__zend_constant;
 
-// const functions: zend_function_entry = null;
-pub const my_skeleton_module_entry: zend_module_entry = zend_module_entry{ .size = @sizeOf(zend_module_entry), .zend_api = 20220829, .zend_debug = 0, .zts = 0, .ini_entry = null, .deps = null, .name = "skeleton", .functions = null, .module_startup_func = null, .module_shutdown_func = null, .request_startup_func = null, .request_shutdown_func = null, .info_func = null, .version = "0.0.1-dev", .globals_size = 0, .globals_ptr = null, .globals_ctor = null, .globals_dtor = null, .post_deactivate_func = null, .module_started = 0, .type = 0, .handle = null, .build_id = "API20220829,NTS", .module_number = 1 };
+// const fc_name: *const u8 = std.mem.ptrCast(*const u8, @as(zend_uintptr_t, @intCast(0)));
+const ttp = zend_type{ .ptr = null, .type_mask = 0 };
+const arginfo_test1 = [1]zend_internal_arg_info{.{ .name = @as([*c]const u8, ""), .type = ttp, .default_value = null }};
+// const result: *const u8 = std.mem.ptrCast(*const u8, @as(zend_uintptr_t, @intCast(0)));
+
+// const arginfo_skeleton_nopp: [1]zend_internal_arg_info = {
+//     zend_internal_arg_info{ .name = null, .type = type_1, .class_flags = 1 };
+//     zend_internal_arg_info{
+//         .name = "str",
+//         .type = (1 << 2) | (1 << 3),
+//         //.type = (((void*)0), (((6) == 18 ? ((1 << 2)|(1 << 3)) : ( (6) == 13 ? (1u << 21) : ((6) == 16 ? ((1 << 1)|(1 << 2)|(1 << 3)|(1 << 4)|(1 << 5)|(1 << 6)|(1 << 7)|(1 << 8)|(1 << 9)) : (1 << (6))))) | ((1) ? 0x2u : 0) | ((((0) << 25) | ((0) ? (1 << (25 + 2)) : 0) | ((0) ? (1 << (25 + 4)) : 0))),
+//         .class_flags = 0,
+//     };
+// };
+
+pub fn zif_skeleton_nopp(execute_data: [*c]zend_execute_data, return_value: [*c]zval) callconv(.C) void {
+    // zend_string *str;
+    _ = execute_data;
+    _ = return_value;
+
+    _ = printf("-------");
+    // do { const int _flags = (0); uint32_t _min_num_args = (1); uint32_t _max_num_args = (uint32_t) (1); uint32_t _num_args = (execute_data)->This.u2.num_args; uint32_t _i = 0; zval *_real_arg, *_arg = ((void*)0); zend_expected_type _expected_type = Z_EXPECTED_LONG; char *_error = ((void*)0); _Bool _dummy = 0; _Bool _optional = 0; int _error_code = 0; ((void)_i); ((void)_real_arg); ((void)_arg); ((void)_expected_type); ((void)_error); ((void)_optional); ((void)_dummy); do { if (__builtin_expect(!!(_num_args < _min_num_args), 0) || __builtin_expect(!!(_num_args > _max_num_args), 0)) { if (!(_flags & (1<<1))) { zend_wrong_parameters_count_error(_min_num_args, _max_num_args); } _error_code = 1; break; } _real_arg = (((zval*)(execute_data)) + (((int)(((((sizeof(zend_execute_data)) + (size_t)8 - 1) & ~((size_t)8 - 1)) + (((sizeof(zval)) + (size_t)8 - 1) & ~((size_t)8 - 1)) - 1) / (((sizeof(zval)) + (size_t)8 - 1) & ~((size_t)8 - 1)))) + ((int)(((int)(0)) - 1))));
+    //     ++_i; do { if (__builtin_expect(!(_i <= _min_num_args || _optional==1), 0)) __builtin_unreachable(); } while (0); do { if (__builtin_expect(!(_i > _min_num_args || _optional==0), 0)) __builtin_unreachable(); } while (0); if (_optional) { if (__builtin_expect(!!(_i >_num_args), 0)) break; } _real_arg++; _arg = _real_arg; if (0) { if (__builtin_expect(!!((zval_get_type(&(*(_arg))) == 10)), 1)) { _arg = &(*(_arg)).value.ref->val; } } if (0) { do { zval *_zv = (_arg); do { if (__builtin_expect(!(zval_get_type(&(*(_zv))) != 10), 0)) __builtin_unreachable(); } while (0); if (zval_get_type(&(*(_zv))) == 7) { do { zval *__zv = (_zv); zend_array *_arr = (*(__zv)).value.arr; if (__builtin_expect(!!(zend_gc_refcount(&(_arr)->gc) > 1), 0)) { do { zend_array *__arr = (zend_array_dup(_arr)); zval *__z = (__zv); (*(__z)).value.arr = __arr; (*(__z)).u1.type_info = (7 | ((1<<0) << 8) | ((1<<1) << 8)); } while (0); zend_gc_try_delref(&(_arr)->gc); } } while (0); } } while (0); }; if (__builtin_expect(!!(!zend_parse_arg_str(_arg, &str, 0, _i)), 0)) { _expected_type = 0 ? Z_EXPECTED_STRING_OR_NULL : Z_EXPECTED_STRING; _error_code = 9; break; }
+    // do { if (__builtin_expect(!(_i == _max_num_args || _max_num_args == (uint32_t) -1), 0)) __builtin_unreachable(); } while (0); } while (0); if (__builtin_expect(!!(_error_code != 0), 0)) { if (!(_flags & (1<<1))) { zend_wrong_parameter_error(_error_code, _i, _error, _expected_type, _arg); } return; } } while (0);
+
+    // do { zval *__z = (return_value); zend_string *__s = (str); (*(__z)).value.str = __s; (*(__z)).u1.type_info = (zval_gc_flags((__s)->gc.u.type_info) & (1<<6)) ? 6 : (6 | ((1<<0) << 8)); } while (0);
+}
+// static const zend_function_entry functions[] = {
+//     { "skeleton_nopp", zif_skeleton_nopp, arginfo_skeleton_nopp, (uint32_t) (sizeof(arginfo_skeleton_nopp)/sizeof(struct _zend_internal_arg_info)-1), 0 },
+//     { ((void*)0), ((void*)0), ((void*)0), 0, 0 }
+// };
+
+pub const fcs_ = [2]zend_function_entry{ .{
+    .fname = "skeleton_nopp",
+    .handler = zif_skeleton_nopp,
+    .arg_info = @as([*c]const zend_internal_arg_info, &arginfo_test1),
+    .num_args = @as(u32, @intCast(0)),
+    .flags = 0,
+}, .{
+    .fname = null,
+    .handler = null,
+    .arg_info = null,
+    .num_args = 0,
+    .flags = 0,
+} };
+
+const fcs = @as([*c]const zend_function_entry, &fcs_);
+
+pub const my_skeleton_module_entry: zend_module_entry = zend_module_entry{ .size = @sizeOf(zend_module_entry), .zend_api = 20220829, .zend_debug = 0, .zts = 0, .ini_entry = null, .deps = null, .name = "skeleton", .functions = fcs, .module_startup_func = null, .module_shutdown_func = null, .request_startup_func = null, .request_shutdown_func = null, .info_func = null, .version = "0.0.1-dev", .globals_size = 0, .globals_ptr = null, .globals_ctor = null, .globals_dtor = null, .post_deactivate_func = null, .module_started = 0, .type = 0, .handle = null, .build_id = "API20220829,NTS", .module_number = 1 };
 
 // extern "C" {
 //     __declspec(dllexport) zend_module_entry *get_module(void) { return &name##_module_entry; }
