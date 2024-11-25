@@ -1,0 +1,5 @@
+.zig-cache
+zig-php-build.sh
+config.h.in~
+configure~
+hello.dep

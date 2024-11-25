@@ -19,6 +19,8 @@ pub fn build(b: *std.Build) void {
     //library.addIncludePath(.{
     // .path = "/usr/include/x86_64-linux-gnu"
     //});
+    // library.bundle_compiler_rt = true;
+    // library.linkLibC();
 
     b.installArtifact(library);
 }
