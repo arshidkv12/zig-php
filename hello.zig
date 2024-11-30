@@ -3,6 +3,16 @@ const php = @cImport({
     @cInclude("php.h");
 });
 
+pub fn zval_long(z: *php.zval, l: i64) void {
+    @field(z, "value").lval = l;
+    @field(z, "u1").type_info = php.IS_LONG;
+}
+
+pub fn zval_copy_value(z: *php.zval, v: *php.zval) void {
+    z.value = v.value;
+    @field(z, "u1").type_info = @field(v, "u1").type_info;
+}
+
 export fn hello_world(execute_data: ?*php.zend_execute_data, return_value: ?*php.zval) void {
     _ = execute_data;
     _ = return_value;
