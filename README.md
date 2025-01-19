@@ -15,6 +15,8 @@ sudo apt-get install php-dev make autoconf
 brew install autoconf make php
 ```
 
+[![Watch the video](https://img.youtube.com/vi/Q2KQDQWcXZU/0.jpg)](https://youtu.be/Q2KQDQWcXZU)
+
 ## Installation Instructions
 1. Clone the repository:
 
