@@ -30,6 +30,8 @@ cd zig-php
 
 ## Building the Extension
 
+Edit build.zig file. Add correct cwd_relative php path.
+
 To build it:
 
 1. `zig build`
