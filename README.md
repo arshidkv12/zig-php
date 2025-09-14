@@ -8,6 +8,8 @@ This project provides a skeleton for building a PHP extension written in Zig. Th
 - **GNU Make**: Required to build the extension.
 - **Autotools**: Required for `phpize` and `./configure`.
 
+Zig version: 0.15.1+
+
 ### System Dependencies (Linux/macOS)
 ```bash
 sudo apt-get install php-dev make autoconf
