@@ -12,7 +12,7 @@ pub fn build(b: *std.Build) void {
             .target = target,
             .optimize = optimize,
         }),
-        .version = .{ .major = 1, .minor = 0, .patch = 0 },
+        .version = .{ .major = 1, .minor = 0, .patch = 1 },
     });
 
     lib.addIncludePath(.{ .cwd_relative = "/opt/homebrew/opt/php@8.4/include/php" });
