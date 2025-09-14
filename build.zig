@@ -23,11 +23,5 @@ pub fn build(b: *std.Build) void {
 
     lib.linkLibC();
 
-    const string = b.dependency("string", .{
-        .target = target,
-        .optimize = optimize,
-    });
-    lib.root_module.addImport("string", string.module("string"));
-
     b.installArtifact(lib);
 }
